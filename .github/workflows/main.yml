@@ -23,8 +23,12 @@ jobs:
     - name: Build Windows Release
       run: flutter build windows --release
 
+    - name: List Build Directory (Debug)
+      run: Get-ChildItem -Path build\windows -Recurse
+      continue-on-error: true
+
     - name: Compress Build Folder
-      run: Compress-Archive -Path build\windows\runner\Release\* -DestinationPath cnex-windows.zip
+      run: Compress-Archive -Path build\windows\x64\runner\Release\* -DestinationPath cnex-windows.zip
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
